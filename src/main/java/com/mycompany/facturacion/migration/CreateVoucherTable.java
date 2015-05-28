@@ -12,7 +12,7 @@ public class CreateVoucherTable implements Migration {
 
     @Override
     public void up(Database database) {
-       database.create("voucher", table ->{
+       database.create("vouchers", table ->{
             table.integer("voucher_id").incremented();
             table.dateTime("created_at");
             table.string("serie",2);
@@ -25,16 +25,12 @@ public class CreateVoucherTable implements Migration {
             table.string("kindofvoucher",20);
             table.text("kindofpay");
             table.primary("voucher_id");
-
-            
-        
         });
-        
     }
 
     @Override
     public void down(Database database) {
-        database.drop("voucher");
+        database.drop("vouchers");
         
     }
     
