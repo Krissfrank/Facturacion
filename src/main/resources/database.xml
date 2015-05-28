@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <databases>
+        <database>
+            <name>mysql</name>
+            <support>com.github.luischavez.database.mysql.MySQLSupport</support>
+            <properties>
+                <item key="server" value="localhost"/>
+                <item key="database" value="factura"/>
+                <item key="port" value="3306"/>
+                <item key="user" value="root"/>
+                <item key="password" value=""/>
+            </properties>
+        </database>
+    </databases>
+    <migrators>
+        <migrator>com.mycompany.facturacion.migration.MyMigrator</migrator>
+    </migrators>
+</configuration>
+
+
+
