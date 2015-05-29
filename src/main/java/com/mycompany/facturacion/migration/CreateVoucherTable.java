@@ -1,6 +1,4 @@
-
 package com.mycompany.facturacion.migration;
-
 import com.github.luischavez.database.Database;
 import com.github.luischavez.database.Migration;
 

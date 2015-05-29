@@ -19,14 +19,21 @@ public class Facturacion {
     public static void main(String[] args) {
         Database.load(new XMLBuilder(), new ProjectSource("/database.xml"));
         port(80);
-        get("/login", loginController::login, new JadeTemplateEngine());
+        
 
         Map<String, String> map = new HashMap<>();
         map.put("message", "Hello World!");
 
         // The hello.jade template file is in the resources/templates directory
-        get("/hello", (rq, rs) -> new ModelAndView(map, "index"), new JadeTemplateEngine());
-
+        get("/index", (rq, rs) -> new ModelAndView(map, "index"), new JadeTemplateEngine());
+        get("/login", (rq, rs) -> new ModelAndView(map, "login"), new JadeTemplateEngine());
+        post("/login",(rq,rs)-> {
+            String user = rq.queryParams("user");
+            String pass = rq.queryParams("pass");
+            System.out.println(user);
+            rs.redirect("/index");
+            return null;
+        });
         /*
          Database database = Database.use("mysql");
          database.open();

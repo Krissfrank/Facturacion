@@ -1,0 +1,16 @@
+
+extends ./layout.jade
+block title
+  Login
+
+block content
+    form(action='login',method='POST') 
+        | Login
+        input(type='text', name='user')
+        | Password
+        input(type='password', name='pass')
+        
+        input(type='submit', value='Send')
+        
+        
+ 
