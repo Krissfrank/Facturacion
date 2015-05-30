@@ -3,7 +3,10 @@ package com.mycompany.facturacion;
 import com.github.luischavez.database.Database;
 import com.github.luischavez.database.configuration.ProjectSource;
 import com.github.luischavez.database.configuration.XMLBuilder;
-import com.mycompany.facturacion.controllers.loginController;
+import com.github.luischavez.database.link.Row;
+import com.github.luischavez.database.link.RowList;
+import com.mycompany.facturacion.controllers.IndexController;
+import com.mycompany.facturacion.controllers.LoginController;
 import java.util.HashMap;
 import java.util.Map;
 import spark.ModelAndView;
@@ -21,23 +24,16 @@ public class Facturacion {
         port(80);
         
 
-        Map<String, String> map = new HashMap<>();
-        map.put("message", "Hello World!");
+      
 
         // The hello.jade template file is in the resources/templates directory
-        get("/index", (rq, rs) -> new ModelAndView(map, "index"), new JadeTemplateEngine());
-        get("/login", (rq, rs) -> new ModelAndView(map, "login"), new JadeTemplateEngine());
-        post("/login",(rq,rs)-> {
-            String user = rq.queryParams("user");
-            String pass = rq.queryParams("pass");
-            System.out.println(user);
-            rs.redirect("/index");
-            return null;
-        });
-        /*
+        get("/index", IndexController::index , new JadeTemplateEngine());
+        get("/login",LoginController::login , new JadeTemplateEngine());
+        post("/login", LoginController::doLogin );
+        get("/logout" ,LoginController::logout);
          Database database = Database.use("mysql");
          database.open();
-         database.reset();
+        // database.reset();
          database.migrate();
          database.insert("receptors", "rfc, name,taxation,street,noEx,noIn,hood,location,reference,city,state,postalCode,country,email", 
          "GAGA940429SZ0", "Abelardo","Persona fisica","Rinconadas de la sierra del rosario","4470",""
@@ -54,6 +50,6 @@ public class Facturacion {
          System.out.println(transmitter.string("name")); 
          }
          database.close();
-         */
+         
     }
 }
