@@ -31,6 +31,6 @@ public class Facturacion {
         if (empty == true) {
             database.insert("users", "user, pass", "manuel", "a123");
         }
-        database.close();
+        
     }
 }
