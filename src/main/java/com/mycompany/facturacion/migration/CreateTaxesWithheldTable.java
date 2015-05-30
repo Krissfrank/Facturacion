@@ -14,7 +14,7 @@ public class CreateTaxesWithheldTable implements Migration {
         database.create("taxeswithheld", table -> {
             table.integer("voucher_id");
             table.string("taxes", 100);
-            table.decimal("rate", 5, 2);
+          //  table.decimal("rate", 5, 2);
             table.decimal("import", 10, 2);
             table.foreign("voucher_id", "vouchers", "voucher_id", "cascade", "cascade");
         });

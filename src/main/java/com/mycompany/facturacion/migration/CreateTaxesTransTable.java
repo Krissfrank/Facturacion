@@ -15,6 +15,7 @@ public class CreateTaxesTransTable implements Migration {
         database.create("taxestrans", table -> {
             table.integer("voucher_id");
             table.string("taxes", 100);
+            table.decimal("rate", 5, 2);
             table.decimal("import", 10, 2);
             table.foreign("voucher_id", "vouchers", "voucher_id", "cascade", "cascade");
         });
