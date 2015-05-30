@@ -5,12 +5,27 @@ block title
 
 block content
     form(action='login',method='POST') 
-        | Login
-        input(type='text', name='user')
-        | Password
-        input(type='password', name='pass')
-        
-        input(type='submit', value='Send')
+
+        div(class='container hero-unit', style="margin: 10%")
+            h1 Facturacion electronica
+            br
+            div(align=center)
+                div(class='row-fluid')
+                    div(class='span3')
+                    div(class='span2', style='text-align: right') Usuario
+                    div(class='span1', style='text-align: letf') 
+                        input(type='text', name='user')
+                    
+                br
+            div(align=center)
+                div(class='row-fluid')
+                    div(class='span3')
+                    div(class='span2', style='text-align: right') Password
+                    div(class='span1', style='text-align: letf') 
+                        input(type='password', name='pass')
+                br
+                    
+            input(class ='btn btn-inverse', type='submit', value='Send')
         
         
  
