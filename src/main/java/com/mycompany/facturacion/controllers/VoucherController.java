@@ -15,7 +15,7 @@ public class VoucherController {
     public static ModelAndView form(Request rq, Response rs){
          if(rq.session().attribute("user") ==null ){
             rs.redirect("/login");
-            return null;
+      //      return null;
         }
         return new ModelAndView(new HashMap<>(), "form");
     }
