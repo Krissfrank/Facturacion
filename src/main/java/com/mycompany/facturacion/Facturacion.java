@@ -6,7 +6,7 @@ import com.github.luischavez.database.configuration.XMLBuilder;
 import com.github.luischavez.database.link.Row;
 import com.github.luischavez.database.link.RowList;
 import com.mycompany.facturacion.controllers.IndexController;
-import com.mycompany.facturacion.controllers.LoginController;
+import com.mycompany.facturacion.controllers.UserController;
 import java.util.HashMap;
 import java.util.Map;
 import spark.ModelAndView;
@@ -28,9 +28,9 @@ public class Facturacion {
 
         // The hello.jade template file is in the resources/templates directory
         get("/index", IndexController::index , new JadeTemplateEngine());
-        get("/login",LoginController::login , new JadeTemplateEngine());
-        post("/login", LoginController::doLogin );
-        get("/logout" ,LoginController::logout);
+        get("/login",UserController::login , new JadeTemplateEngine());
+        post("/login", UserController::doLogin );
+        get("/logout" ,UserController::logout);
          Database database = Database.use("mysql");
          database.open();
         // database.reset();
