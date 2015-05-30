@@ -6,7 +6,7 @@ block content
     form(action='saveForm',method='POST') 
 
     div(class='container-fluid hero-unit')
-        div(class='row-fluid')
+        div(class='row-fluid' style='margin-top: -20px)
             h1 Facturacion electronica
 
     div(class='container-fluid')
@@ -16,64 +16,245 @@ block content
                     div(class='row-fluid')
                         h1 Transmitter
 
-    div(class='container-fluid', style='margin-top: 2%')
+                div(class='container-fluid', style='margin-top: 2%')
 
-        div(class='row-fluid')
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') Nombre:
+                        div(class='span2')
+                            input(type='text', name='Tnombre', pattern='[A-Za-z /s]+', oninvalid='setCustomValidity("Escriba bien su nombre -.-")') 
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') RFC:
+                        div(class='span2')
+                            input(type='text', name='Trfc', pattern='[A-Z]{4}[0-9]{6}[A-Z]{6}[0-9]{2}', oninvalid='setCustomValidity("Escriba bien su RFC -.-")') 
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') Taxation:
+                        div(class='span2')
+                            input(type='text', name='Ttaxation', pattern='[A-Za-z]+', oninvalid='setCustomValidity("Escriba bien su Taxation -.-")') 
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') Colonia:
+                        div(class='span2')
+                            input(type='text', name='Tcolonia', pattern='[A-Za-z0-9 /s]+', oninvalid='setCustomValidity("Escriba bien su Colonia -.-")') 
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') Calle:
+                        div(class='span2')
+                            input(type='text', name='Tcalle', pattern='[A-Za-z0-9 /s]+', oninvalid='setCustomValidity("Escriba bien su calle -.-")') 
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') Numero interior:
+                        div(class='span2')
+                            input(type='text', name='Tinterior', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') Numero exterior:
+                        div(class='span2')
+                            input(type='text', name='Texterior', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') Localidad:
+                        div(class='span2')
+                            input(type='text', name='Tlocalidad', pattern='[A-Za-z0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') Referencia:
+                        div(class='span2')
+                            input(type='text', name='Treferencia', pattern='[A-Za-z0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') Pais:
+                        div(class='span2')
+                            input(type='text', name='Tpais', pattern='[A-Za-z]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') Estado:
+                        div(class='span2')
+                            input(type='text', name='Testado', pattern='[A-Za-z]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') Ciudad:
+                        div(class='span2')
+                            input(type='text', name='Tciudad', pattern='[A-Za-z]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') Codigo postal:
+                        div(class='span2')
+                            input(type='text', name='Tcp', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
+
+
+
+
+
+            div(class='span6')
+                div(class='container-fluid', style='text-align: center ; margin-top: -20px')
+                    div(class='row-fluid')
+                        h1 Receptor
+
+                div(class='container-fluid', style='margin-top: 2%')
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') Nombre:
+                        div(class='span2')
+                            input(type='text', name='Rnombre', pattern='[A-Za-z /s]+', oninvalid='setCustomValidity("Escriba bien su nombre -.-")') 
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') RFC:
+                        div(class='span2')
+                            input(type='text', name='Rrfc', pattern='[A-Z]{4}[0-9]{6}[A-Z]{6}[0-9]{2}', oninvalid='setCustomValidity("Escriba bien su RFC -.-")') 
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') Taxation:
+                        div(class='span2')
+                            input(type='text', name='Rtaxation', pattern='[A-Za-z]+', oninvalid='setCustomValidity("Escriba bien su Taxation -.-")') 
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') Colonia:
+                        div(class='span2')
+                            input(type='text', name='Rcolonia', pattern='[A-Za-z0-9 /s]+', oninvalid='setCustomValidity("Escriba bien su Colonia -.-")') 
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') Calle:
+                        div(class='span2')
+                            input(type='text', name='Rcalle', pattern='[A-Za-z0-9 /s]+', oninvalid='setCustomValidity("Escriba bien su calle -.-")') 
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') Numero interior:
+                        div(class='span2')
+                            input(type='text', name='Rinterior', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') Numero exterior:
+                        div(class='span2')
+                            input(type='text', name='Rexterior', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') Localidad:
+                        div(class='span2')
+                            input(type='text', name='Rlocalidad', pattern='[A-Za-z0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') Referencia:
+                        div(class='span2')
+                            input(type='text', name='Rreferencia', pattern='[A-Za-z0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') Pais:
+                        div(class='span2')
+                            input(type='text', name='Rpais', pattern='[A-Za-z]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') Estado:
+                        div(class='span2')
+                            input(type='text', name='Restado', pattern='[A-Za-z]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') Ciudad:
+                        div(class='span2')
+                            input(type='text', name='Rciudad', pattern='[A-Za-z]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') Codigo postal:
+                        div(class='span2')
+                            input(type='text', name='Rcp', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
+
+                    div(class='row-fluid')
+                        div(class='span1')
+                        div(class='span2', style='text-align: right') email:
+                        div(class='span2')
+                            input(type='text', name='Rmail', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
+
+    div(class='container-fluid hero-unit", style=" margin-left: 2%; margin-right: 2%')
+        div(class='container-fluid", style="text-align: center ; margin-top: -20px')
+            div(class='row-fluid')
+                h2 Voucher
+    
+    br
+
+    div(class='container-fluid')
+
+        div(class='row-fluid" style='margin-left: -10%')
+            div(class='span6')
+            div(class='span1', style='text-align: right') Serie
             div(class='span1')
-            div(class='span2', style='text-align: right') Nombre:
-            div(class='span2')
-                input(type='text', name='Tnombre', pattern='[A-Z][a-z /s]+', oninvalid='setCustomValidity("Escriba bien su nombre -.-")') 
-
-        div(class='row-fluid')
+                input(type='text', name='Vserie', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")')
+            div(class='span1', style='text-align: right') Folio
             div(class='span1')
-            div(class='span2', style='text-align: right') RFC:
-            div(class='span2')
-                input(type='text', name='Trfc', pattern='[A-Z]{4}[0-9]{6}[A-Z]{6}[0-9]{2}', oninvalid='setCustomValidity("Escriba bien su RFC -.-")') 
+                input(type='text', name='Vfolio', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")')
 
-        div(class='row-fluid')
+            br
+            br
+
+        div(class='row-fluid" style='margin-left: -10%')
             div(class='span1')
-            div(class='span2', style='text-align: right') Taxation:
-            div(class='span2')
-                input(type='text', name='Ttaxation', pattern='[A-Za-z]+', oninvalid='setCustomValidity("Escriba bien su Taxation -.-")') 
-
-        div(class='row-fluid')
+            div(class='span1', style='text-align: right') Divisa:
             div(class='span1')
-            div(class='span2', style='text-align: right') Colonia:
-            div(class='span2')
-                input(type='text', name='Tcolonia', pattern='[A-Za-z0-9]+', oninvalid='setCustomValidity("Escriba bien su Colonia -.-")') 
-
-        div(class='row-fluid')
+                input(type='text', name='Vdivisa', pattern='[a-zA-z]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")')
+            div(class='span1', style='text-align: right') Tipo de divisa:
             div(class='span1')
-            div(class='span2', style='text-align: right') Calle:
-            div(class='span2')
-                input(type='text', name='Tcalle', pattern='[A-Za-z0-9]+[A-Za-z0-9]+[A-Za-z0-9]+', oninvalid='setCustomValidity("Escriba bien su calle -.-")') 
+                input(type='text', name='Vtipodiv', pattern='[A-Za-z]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")')
 
-        div(class='row-fluid')
+        div(class='row-fluid" style='margin-left: -10%')
+            div(class='span2', style='text-align: right') Metodo pago:
             div(class='span1')
-            div(class='span2', style='text-align: right') Numero interior:
-            div(class='span2')
-                input(type='text', name='Tinterior', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
-
-        div(class='row-fluid')
+                input(type='text', name='Vmetpago', pattern='[a-zA-z]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")')
+            div(class='span1', style='text-align: right') Tipo de pago:
             div(class='span1')
-            div(class='span2', style='text-align: right') Numero exterior:
-            div(class='span2')
-                input(type='text', name='Texterior', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
+                input(type='text', name='Vtipopago', pattern='[A-Za-z]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")')
 
-        div(class='row-fluid')
+        div(class='row-fluid" style='margin-left: -10%')
+            div(class='span2', style='text-align: right') Condition pay:
             div(class='span1')
-            div(class='span2', style='text-align: right') Localidad:
-            div(class='span2')
-                input(type='text', name='Tlocalidad', pattern='[A-Za-z0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
-
-        div(class='row-fluid')
+                input(type='text', name='Vcondition', pattern='[a-zA-z]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")')
+          
+        div(class='row-fluid" style='margin-left: -10%')
+            div(class='span2', style='text-align: right') Place of expedition:
             div(class='span1')
-            div(class='span2', style='text-align: right') referencia:
-            div(class='span2')
-                input(type='text', name='Treferencia', pattern='[A-Za-z]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
+                input(type='text', name='Vplaceex', pattern='[a-zA-z]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")')
+
+        div(class='row-fluid" style='margin-left: -10%')
+            div(class='span2', style='text-align: right') Kind of voucher:
+            div(class='span1')
+                input(type='text', name='Vkindvouch', pattern='[a-zA-z]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")')
+
+         
 
 
 
+
+
+
+
+
+ 
+         
 
 
 
