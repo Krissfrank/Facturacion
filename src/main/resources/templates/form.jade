@@ -28,7 +28,7 @@ block content
                             div(class='span1')
                             div(class='span2', style='text-align: right') RFC:
                             div(class='span2')
-                                input(type='text', name='Trfc', pattern='[A-Z]{4}[0-9]{6}[A-Z]{6}[0-9]{2}', oninvalid='setCustomValidity("Escriba bien su RFC -.-")') 
+                                input(type='text', name='Trfc', pattern='[A-Z]{4}[0-9]{6}[A-Z]{2}[0-9]{1}', oninvalid='setCustomValidity("Escriba bien su RFC -.-")', maxlength='13') 
 
                         div(class='row-fluid')
                             div(class='span1')
@@ -52,13 +52,13 @@ block content
                             div(class='span1')
                             div(class='span2', style='text-align: right') Numero interior:
                             div(class='span2')
-                                input(type='text', name='Tinterior', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
+                                input(type='text', name='Tinterior', pattern='[0-9]+', oninvalid='setCustomValidity("Ingrese solamente digitos")', maxlength='20') 
 
                         div(class='row-fluid')
                             div(class='span1')
                             div(class='span2', style='text-align: right') Numero exterior:
                             div(class='span2')
-                                input(type='text', name='Texterior', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
+                                input(type='text', name='Texterior', pattern='[0-9]+', oninvalid='setCustomValidity("Ingrese solamente digitos")', maxlength='20') 
 
                         div(class='row-fluid')
                             div(class='span1')
@@ -94,7 +94,7 @@ block content
                             div(class='span1')
                             div(class='span2', style='text-align: right') Codigo postal:
                             div(class='span2')
-                                input(type='text', name='Tcp', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
+                                input(type='text', name='Tcp', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba un codigo postal valido")', maxlength='20') 
 
 
 
@@ -117,7 +117,7 @@ block content
                             div(class='span1')
                             div(class='span2', style='text-align: right') RFC:
                             div(class='span2')
-                                input(type='text', name='Rrfc', pattern='[A-Z]{4}[0-9]{6}[A-Z]{6}[0-9]{2}', oninvalid='setCustomValidity("Escriba bien su RFC -.-")') 
+                                input(type='text', name='Rrfc', pattern='[A-Z]{4}[0-9]{6}[A-Z]{6}[0-9]{2}', oninvalid='setCustomValidity("Escriba bien el RFC -.-")', maxlength='13') 
 
                         div(class='row-fluid')
                             div(class='span1')
@@ -141,13 +141,13 @@ block content
                             div(class='span1')
                             div(class='span2', style='text-align: right') Numero interior:
                             div(class='span2')
-                                input(type='text', name='Rinterior', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
+                                input(type='text', name='Rinterior', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")', maxlength='20') 
 
                         div(class='row-fluid')
                             div(class='span1')
                             div(class='span2', style='text-align: right') Numero exterior:
                             div(class='span2')
-                                input(type='text', name='Rexterior', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
+                                input(type='text', name='Rexterior', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")', maxlength='20') 
 
                         div(class='row-fluid')
                             div(class='span1')
@@ -189,7 +189,12 @@ block content
                             div(class='span1')
                             div(class='span2', style='text-align: right') email:
                             div(class='span2')
-                                input(type='text', name='Rmail', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")') 
+                                input(type='text', name='Rmail', pattern='[0-9a-zA-Z_-.]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")', maxlength='100') 
+
+
+
+
+
 
         div(class='container-fluid hero-unit', style=' margin-left: 2%; margin-right: 2%')
             div(class='container-fluid', style='text-align: center ; margin-top: -20px')
@@ -245,8 +250,56 @@ block content
                     div(class='span2')
                     div(class='span2', style='text-align: right') Kind of voucher:
                     div(class='span1')
-                        input(type='text', name='Vkindvouch', pattern='[a-zA-z]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")')
+                        input(type='text', name='Vkindvouch', pattern='[a-zA-z]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")', maxlength='20')
 
+
+
+
+
+
+            div(class='container-fluid', style='text-align: center ; margin-top: -20px')
+                div(class='row-fluid')
+                    h2 Impuestos retenidos
+
+                div(class='row-fluid', style='margin-left: -10%')
+                    div(class='span2')
+                    div(class='span2', style='text-align: right') Taxes:
+                    div(class='span1')
+                        select(name='taxesWithheld')
+                            option(value='iva') IVA
+                            option(value='isr') ISR
+
+                div(class='row-fluid', style='margin-left: -10%')
+                    div(class='span2')
+                    div(class='span2', style='text-align: right') Import:
+                    div(class='span1')
+                        input(type='text', name='TWimport', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")')
+
+
+
+            div(class='container-fluid', style='text-align: center ; margin-top: -20px')
+                div(class='row-fluid')
+                    h2 Impuestos de traslado
+
+                div(class='row-fluid', style='margin-left: -10%')
+                    div(class='span2')
+                    div(class='span2', style='text-align: right') Impuesto:
+                    div(class='span1')
+                        select(name='taxesTrans')
+                            option(value='iva') IVA
+                            option(value='isr') IEPS
+
+                div(class='row-fluid', style='margin-left: -10%')
+                    div(class='span2')
+                    div(class='span2', style='text-align: right') Import:
+                    div(class='span1')
+                        input(type='text', name='TTimport', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")')
+
+                div(class='row-fluid', style='margin-left: -10%')
+                    div(class='span2')
+                    div(class='span2', style='text-align: right') Rate:
+                    div(class='span1')
+                        input(type='text', name='TWrate', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")')
 
                         input(class ='btn btn-inverse', type='submit', value='Guardar')
          

@@ -1,6 +1,7 @@
 package com.mycompany.facturacion.controllers;
 
 import com.github.luischavez.database.Database;
+import com.github.luischavez.database.link.Affecting;
 import java.util.HashMap;
 import spark.ModelAndView;
 import spark.Request;
@@ -65,17 +66,31 @@ public class VoucherController {
         String Vplaceex= rq.queryParams("Vplaceex");
         String Vkindvouch= rq.queryParams("Vkindvouch");
         
+        String taxesWithheld= rq.queryParams("taxesWithheld");
+        String TWimport=rq.queryParams("TWimport");
+        
+        String taxesTrans=rq.queryParams("taxesTrans");
+        String TTimport=rq.queryParams("TTimport");
+        String TWrate=rq.queryParams("TWrate");
+        
         Database database = Database.use("mysql");
         database.open();
-        database.insert("Transmitters","name, rfc, taxation, ,hood, street, noIn, noEx, location, reference, country, state, city, postalCode" , 
+        
+        Affecting transInsert = database.insert("Transmitters","name, rfc, taxation, ,hood, street, noIn, noEx, location, reference, country, state, city, postalCode" , 
                 Tnombre, Trfc, Ttaxation,Tcolonia, Tcalle, Tinterior, Texterior, Tlocalidad, Treferencia, Tpais, Testado, Tciudad, Tcp   );
+        Object transID = transInsert.getGeneratedKeys()[0];
         
-        database.insert("receptors","name,rfc,taxation,hood, street, noIn, noEx, location, reference,country, state, city, postalCode, email"
+        Affecting receptInsert = database.insert("receptors","name,rfc,taxation,hood, street, noIn, noEx, location, reference,country, state, city, postalCode, email"
                 ,Rnombre, Rrfc, Rtaxation, Rcolonia,Rcalle, Rinterior,Rexterior, Rlocalidad, Rreferencia, Rpais, Restado, Rciudad,Rcp,Rmail );
+        Object recepID = receptInsert.getGeneratedKeys()[0];
         
-        database.insert("vouchers", "serie, folio, currency,kindofchange,methodpay,kindofpay,conditionpay,placeofexpedition,kindofvoucher"
+        Affecting voucherInsert = database.insert("vouchers", "serie, folio, currency,kindofchange,methodpay,kindofpay,conditionpay,placeofexpedition,kindofvoucher"
                 , Vserie,Vfolio,Vdivisa,Vtipodiv,Vmetpago,Vtipopago,Vcondition,Vplaceex,Vkindvouch);
+        Object voucherID = voucherInsert.getGeneratedKeys()[0];
         
+        database.insert("taxeswithheld", "voucher_id, taxes, import",voucherID,taxesWithheld,TWimport);
+        
+        database.insert("taxestrans", "voucher_id, taxes, rate , import", voucherID, taxesTrans, TWrate, TTimport);
         database.close();
         
         return null;
