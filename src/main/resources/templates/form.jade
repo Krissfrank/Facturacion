@@ -117,7 +117,7 @@ block content
                             div(class='span1')
                             div(class='span2', style='text-align: right') RFC:
                             div(class='span2')
-                                input(type='text', name='Rrfc', pattern='[A-Z]{4}[0-9]{6}[A-Z]{6}[0-9]{2}', oninvalid='setCustomValidity("Escriba bien el RFC -.-")', maxlength='13') 
+                                input(type='text', name='Rrfc', pattern='[A-Z]{4}[0-9]{6}[A-Z]{2}[0-9]{1}', oninvalid='setCustomValidity("Escriba bien el RFC -.-")', maxlength='13') 
 
                         div(class='row-fluid')
                             div(class='span1')
@@ -300,6 +300,37 @@ block content
                     div(class='span2', style='text-align: right') Rate:
                     div(class='span1')
                         input(type='text', name='TWrate', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")')
+
+            div(class='container-fluid', style='text-align: center ; margin-top: -20px')
+                div(class='row-fluid')
+                    h2 Conceptos
+
+                div(class='row-fluid', style='margin-left: -10%')
+                    div(class='span2')
+                    div(class='span2', style='text-align: right') Cantidad:
+                    div(class='span1')
+                        input(type='text', name='Ccantidad', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")')
+
+                div(class='row-fluid', style='margin-left: -10%')
+                    div(class='span2')
+                    div(class='span2', style='text-align: right') Unidad:
+                    div(class='span1')
+                        input(type='text', name='Cunidad', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")')
+
+                div(class='row-fluid', style='margin-left: -10%')
+                    div(class='span2')
+                    div(class='span2', style='text-align: right') No. identificacion:
+                    div(class='span1')
+                        input(type='text', name='Cnoid', pattern='[0-9]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")')
+
+                div(class='row-fluid', style='margin-left: -10%')
+                    div(class='span2')
+                    div(class='span2', style='text-align: right') Descripcion:
+                    div(class='span1')
+                        input(type='text', name='Cdesc', pattern='[a-zA-z]+', oninvalid='setCustomValidity("Escriba bien su numero -.-")', maxlength='50')
+
+
+
 
                         input(class ='btn btn-inverse', type='submit', value='Guardar')
          

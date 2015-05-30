@@ -25,6 +25,7 @@ public class Facturacion {
         post("/login", UserController::doLogin);
         get("/logout", UserController::logout);
         get("/form", VoucherController::form, new JadeTemplateEngine());
+        post("/saveForm",VoucherController::saveForm);
         Database database = Database.use("mysql");
         database.open();
         boolean empty = database.table("users").get().empty();

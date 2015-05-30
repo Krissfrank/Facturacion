@@ -2,6 +2,8 @@ package com.mycompany.facturacion.controllers;
 
 import com.github.luischavez.database.Database;
 import com.github.luischavez.database.link.Affecting;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import spark.ModelAndView;
 import spark.Request;
@@ -73,24 +75,32 @@ public class VoucherController {
         String TTimport=rq.queryParams("TTimport");
         String TWrate=rq.queryParams("TWrate");
         
+        
+        String Ccantidad=rq.queryParams("Ccantidad");
+        String Cunidad=rq.queryParams("Cunidad");
+        String Cnoid=rq.queryParams("Cnoid");
+        String Cdesc=rq.queryParams("Cdesc");
+        
         Database database = Database.use("mysql");
         database.open();
         
         Affecting transInsert = database.insert("Transmitters","name, rfc, taxation, ,hood, street, noIn, noEx, location, reference, country, state, city, postalCode" , 
-                Tnombre, Trfc, Ttaxation,Tcolonia, Tcalle, Tinterior, Texterior, Tlocalidad, Treferencia, Tpais, Testado, Tciudad, Tcp   );
+                Tnombre, Trfc, Ttaxation,Tcolonia, Tcalle, Tinterior, Texterior, Tlocalidad, Treferencia, Tpais, Testado, Tciudad, Tcp  );
         Object transID = transInsert.getGeneratedKeys()[0];
         
         Affecting receptInsert = database.insert("receptors","name,rfc,taxation,hood, street, noIn, noEx, location, reference,country, state, city, postalCode, email"
                 ,Rnombre, Rrfc, Rtaxation, Rcolonia,Rcalle, Rinterior,Rexterior, Rlocalidad, Rreferencia, Rpais, Restado, Rciudad,Rcp,Rmail );
         Object recepID = receptInsert.getGeneratedKeys()[0];
         
-        Affecting voucherInsert = database.insert("vouchers", "serie, folio, currency,kindofchange,methodpay,kindofpay,conditionpay,placeofexpedition,kindofvoucher"
-                , Vserie,Vfolio,Vdivisa,Vtipodiv,Vmetpago,Vtipopago,Vcondition,Vplaceex,Vkindvouch);
+        Affecting voucherInsert = database.insert("vouchers", "created_at serie, folio, currency,kindofchange,methodpay,kindofpay,conditionpay,placeofexpedition,kindofvoucher"
+                ,LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME), Vserie,Vfolio,Vdivisa,Vtipodiv,Vmetpago,Vtipopago,Vcondition,Vplaceex,Vkindvouch);
         Object voucherID = voucherInsert.getGeneratedKeys()[0];
         
         database.insert("taxeswithheld", "voucher_id, taxes, import",voucherID,taxesWithheld,TWimport);
         
         database.insert("taxestrans", "voucher_id, taxes, rate , import", voucherID, taxesTrans, TWrate, TTimport);
+        
+        database.insert("concepts", "voucher_id, quantity,unit,noId,description ", voucherID, Ccantidad,Cunidad,Cnoid,Cdesc);
         database.close();
         
         return null;
