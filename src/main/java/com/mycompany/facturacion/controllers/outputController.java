@@ -1,5 +1,8 @@
 package com.mycompany.facturacion.controllers;
 
+import com.github.luischavez.database.Database;
+import com.github.luischavez.database.link.Row;
+import com.mycompany.facturacion.Register;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.pdfbox.exceptions.COSVisitorException;
@@ -19,6 +22,11 @@ public class outputController {
 
     public static Object pdf(Request rq, Response rs) throws IOException, COSVisitorException {
         String id = rq.params(":id");
+        Database database = Database.use("mysql");
+        database.open();
+        Row regis = database.table("regis").where("regis_id","=", id).first();
+        Register register = new Register(regis);
+        database.close();
         PDDocument document = new PDDocument();
         PDPage page = new PDPage();
         document.addPage(page);
@@ -30,10 +38,18 @@ public class outputController {
         PDPageContentStream contentStream = new PDPageContentStream(document, page);
 
 // Define a text content stream using the selected font, moving the cursor and drawing the text "Hello World"
+        
+        
         contentStream.beginText();
         contentStream.setFont(font, 12);
         contentStream.moveTextPositionByAmount(100, 700);
-        contentStream.drawString("Hello World");
+        contentStream.drawString("RFC:"+register.receptor().string("rfc"));
+        contentStream.endText();
+        
+        contentStream.beginText();
+        contentStream.setFont(font, 12);
+        contentStream.moveTextPositionByAmount(100, 600);
+        contentStream.drawString("Nombre:"+register.receptor().string("name"));
         contentStream.endText();
 
 // Make sure that the content stream is closed:
