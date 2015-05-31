@@ -70,25 +70,25 @@ block content
                             div(class='span1')
                             div(class='span2', style='text-align: right') Referencia:
                             div(class='span2')
-                                input(type='text', name='Treferencia', pattern='[A-Za-z0-9]+', required) 
+                                input(type='text', name='Treferencia', pattern='[A-Za-z0-9 \s]+', required) 
 
                         div(class='row-fluid')
                             div(class='span1')
                             div(class='span2', style='text-align: right') Pais:
                             div(class='span2')
-                                input(type='text', name='Tpais', pattern='[A-Za-z]+', required) 
+                                input(type='text', name='Tpais', pattern='[A-Za-z \s]+', required) 
 
                         div(class='row-fluid')
                             div(class='span1')
                             div(class='span2', style='text-align: right') Estado:
                             div(class='span2')
-                                input(type='text', name='Testado', pattern='[A-Za-z]+', required) 
+                                input(type='text', name='Testado', pattern='[A-Za-z \s]+', required) 
 
                         div(class='row-fluid')
                             div(class='span1')
                             div(class='span2', style='text-align: right') Ciudad:
                             div(class='span2')
-                                input(type='text', name='Tciudad', pattern='[A-Za-z]+', required) 
+                                input(type='text', name='Tciudad', pattern='[A-Za-z \s]+', required) 
 
                         div(class='row-fluid')
                             div(class='span1')
@@ -159,25 +159,25 @@ block content
                             div(class='span1')
                             div(class='span2', style='text-align: right') Referencia:
                             div(class='span2')
-                                input(type='text', name='Rreferencia', pattern='[A-Za-z0-9]+', required) 
+                                input(type='text', name='Rreferencia', pattern='[A-Za-z0-9 \s]+', required) 
 
                         div(class='row-fluid')
                             div(class='span1')
                             div(class='span2', style='text-align: right') Pais:
                             div(class='span2')
-                                input(type='text', name='Rpais', pattern='[A-Za-z]+', required) 
+                                input(type='text', name='Rpais', pattern='[A-Za-z \s]+', required) 
 
                         div(class='row-fluid')
                             div(class='span1')
                             div(class='span2', style='text-align: right') Estado:
                             div(class='span2')
-                                input(type='text', name='Restado', pattern='[A-Za-z]+', required) 
+                                input(type='text', name='Restado', pattern='[A-Za-z \s]+', required) 
 
                         div(class='row-fluid')
                             div(class='span1')
                             div(class='span2', style='text-align: right') Ciudad:
                             div(class='span2')
-                                input(type='text', name='Rciudad', pattern='[A-Za-z]+', required) 
+                                input(type='text', name='Rciudad', pattern='[A-Za-z \s]+', required) 
 
                         div(class='row-fluid')
                             div(class='span1')
@@ -273,7 +273,7 @@ block content
                     div(class='span2')
                     div(class='span2', style='text-align: right') Import:
                     div(class='span1')
-                        input(type='text', name='TWimport', pattern='[0-9]+', required)
+                        input(type='number', name='TWimport', pattern='[0-9]+', required)
 
 
 
@@ -293,13 +293,13 @@ block content
                     div(class='span2')
                     div(class='span2', style='text-align: right') Import:
                     div(class='span1')
-                        input(type='text', name='TTimport', pattern='[0-9]+', required)
+                        input(type='text', name='TTimport', pattern='[0-9]+',maxlength='13', required)
 
                 div(class='row-fluid', style='margin-left: -10%')
                     div(class='span2')
                     div(class='span2', style='text-align: right') Rate:
                     div(class='span1')
-                        input(type='text', name='TWrate', pattern='[0-9]+', required)
+                        input(type='text', name='TWrate', pattern='[0-9]{3}\.[0-9]{2}', required)
 
             div(class='container-fluid', style='text-align: center ; margin-top: -20px')
                 div(class='row-fluid')

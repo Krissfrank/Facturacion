@@ -3,8 +3,8 @@ package com.mycompany.facturacion.controllers;
 import com.github.luischavez.database.Database;
 import com.github.luischavez.database.link.Row;
 import com.mycompany.facturacion.Register;
-import java.awt.Color;
 import java.io.IOException;
+import java.util.HashMap;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.pdfbox.exceptions.COSVisitorException;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -12,6 +12,7 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.edit.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
@@ -21,6 +22,22 @@ import spark.Response;
  */
 public class outputController {
 
+    
+      public static ModelAndView xml(Request rq, Response rs){
+    String id = rq.params(":id");
+        Database database = Database.use("mysql");
+        database.open();
+        Row regis = database.table("regis").where("regis_id","=", id).first();
+        Register register = new Register(regis);
+        database.close();
+        
+        HashMap<Object, Object> values = new HashMap<>();
+        values.put("regis",register);
+        rs.header("Content-Type", "application/xml");
+            rs.type("text/xml");
+        return new ModelAndView(values,"xml");
+    }
+    
     public static Object pdf(Request rq, Response rs) throws IOException, COSVisitorException {
         String id = rq.params(":id");
         Database database = Database.use("mysql");

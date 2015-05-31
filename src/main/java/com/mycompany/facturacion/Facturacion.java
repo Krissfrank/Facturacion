@@ -25,6 +25,7 @@ public class Facturacion {
         if (empty == true) {
             database.insert("users", "user, pass", "manuel", "a123");
         }
+       
         port(80);
 
         // The hello.jade template file is in the resources/templates directory
@@ -35,6 +36,7 @@ public class Facturacion {
         get("/form", VoucherController::form, new JadeTemplateEngine());
         post("/saveForm", VoucherController::saveForm);
         get("/pdf/:id", outputController::pdf);
+        get("/xml/:id", outputController::xml, new JadeTemplateEngine());
 
     }
 }
