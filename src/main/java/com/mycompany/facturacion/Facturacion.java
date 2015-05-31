@@ -6,6 +6,7 @@ import com.github.luischavez.database.configuration.XMLBuilder;
 import com.mycompany.facturacion.controllers.IndexController;
 import com.mycompany.facturacion.controllers.UserController;
 import com.mycompany.facturacion.controllers.VoucherController;
+import com.mycompany.facturacion.controllers.outputController;
 import static spark.Spark.*;
 import spark.template.jade.JadeTemplateEngine;
 
@@ -33,6 +34,7 @@ public class Facturacion {
         get("/logout", UserController::logout);
         get("/form", VoucherController::form, new JadeTemplateEngine());
         post("/saveForm", VoucherController::saveForm);
+        get("/pdf/:id", outputController::pdf);
 
     }
 }

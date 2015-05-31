@@ -31,6 +31,8 @@ block content
                         td #{reg.receptor().string("name") }
                         td #{reg.voucher().dateTime("created_at") }
                         td #{reg.transmitter().string("rfc") }
+                        td 
+                            a(href='/pdf/#{reg.regis().number("regis_id")}') PDF
                      
 
 
