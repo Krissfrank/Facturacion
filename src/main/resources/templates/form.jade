@@ -32,9 +32,9 @@ block content
 
                         div(class='row-fluid')
                             div(class='span1')
-                            div(class='span2', style='text-align: right') Taxation:
+                            div(class='span2', style='text-align: right') Fiscalidad:
                             div(class='span2')
-                                input(type='text', name='Ttaxation', pattern='[A-Za-z]+', required) 
+                                input(type='text', name='Ttaxation', pattern='[A-Za-z \s]+', required) 
 
                         div(class='row-fluid')
                             div(class='span1')
@@ -64,7 +64,7 @@ block content
                             div(class='span1')
                             div(class='span2', style='text-align: right') Localidad:
                             div(class='span2')
-                                input(type='text', name='Tlocalidad', pattern='[A-Za-z0-9]+', required) 
+                                input(type='text', name='Tlocalidad', pattern='[A-Za-z0-9 \s]+', required) 
 
                         div(class='row-fluid')
                             div(class='span1')
@@ -94,7 +94,7 @@ block content
                             div(class='span1')
                             div(class='span2', style='text-align: right') Codigo postal:
                             div(class='span2')
-                                input(type='text', name='Tcp', pattern='[0-9]+', required) 
+                                input(type='text', name='Tcp', pattern='[0-9]+',maxlength='20', required) 
 
 
 
@@ -121,9 +121,9 @@ block content
 
                         div(class='row-fluid')
                             div(class='span1')
-                            div(class='span2', style='text-align: right') Taxation:
+                            div(class='span2', style='text-align: right') Fiscalidad:
                             div(class='span2')
-                                input(type='text', name='Rtaxation', pattern='[A-Za-z]+', required) 
+                                input(type='text', name='Rtaxation', pattern='[A-Za-z \s]+', required) 
 
                         div(class='row-fluid')
                             div(class='span1')
@@ -153,7 +153,7 @@ block content
                             div(class='span1')
                             div(class='span2', style='text-align: right') Localidad:
                             div(class='span2')
-                                input(type='text', name='Rlocalidad', pattern='[A-Za-z0-9]+', required) 
+                                input(type='text', name='Rlocalidad', pattern='[A-Za-z0-9 \s]+', required) 
 
                         div(class='row-fluid')
                             div(class='span1')
@@ -183,13 +183,13 @@ block content
                             div(class='span1')
                             div(class='span2', style='text-align: right') Codigo postal:
                             div(class='span2')
-                                input(type='text', name='Rcp', pattern='[0-9]+', required) 
+                                input(type='text', name='Rcp', pattern='[0-9]+',maxlength='20', required) 
 
                         div(class='row-fluid')
                             div(class='span1')
                             div(class='span2', style='text-align: right') email:
                             div(class='span2')
-                                input(type='text', name='Rmail', pattern='[0-9a-zA-Z_-.]+(@)[0-9a-zA-Z]+(.)[0-9a-zA-Z]+', maxlength='100', required) 
+                                input(type='text', name='Rmail', pattern='[0-9a-zA-Z_-.]+[@][0-9a-zA-Z]+[.][0-9a-zA-Z]+', maxlength='100', required) 
 
 
 
@@ -216,41 +216,41 @@ block content
                     div(class='span2')
                     div(class='span2', style='text-align: right') Divisa:
                     div(class='span1')
-                        input(type='text', name='Vdivisa', pattern='[a-zA-z]+', required)
+                        input(type='text', name='Vdivisa', pattern='[a-zA-z \s]+', required)
                     div(class='span1')
                     div(class='span2', style='text-align: right') Tipo de divisa:
                     div(class='span1')
-                        input(type='text', name='Vtipodiv', pattern='[A-Za-z]+', required)
+                        input(type='text', name='Vtipodiv', pattern='[A-Za-z \s]+', required)
 
 
                 div(class='row-fluid', style='margin-left: -10%')
                     div(class='span2')
                     div(class='span2', style='text-align: right') Metodo pago:
                     div(class='span1')
-                        input(type='text', name='Vmetpago', pattern='[a-zA-z]+', required)
+                        input(type='text', name='Vmetpago', pattern='[a-zA-z \s]+', required)
                     div(class='span1')
                     div(class='span2', style='text-align: right') Tipo de pago:
                     div(class='span1')
-                        input(type='text', name='Vtipopago', pattern='[A-Za-z]+', required)
+                        input(type='text', name='Vtipopago', pattern='[A-Za-z \s]+', required)
 
 
                 div(class='row-fluid', style='margin-left: -10%')
                     div(class='span2')
-                    div(class='span2', style='text-align: right') Condition pay:
+                    div(class='span2', style='text-align: right') Condicion de pago:
                     div(class='span1')
-                        input(type='text', name='Vcondition', pattern='[a-zA-z]+', required)
+                        input(type='text', name='Vcondition', pattern='[a-zA-z \s]+', required)
           
                 div(class='row-fluid', style='margin-left: -10%')
                     div(class='span2')
-                    div(class='span2', style='text-align: right') Place of expedition:
+                    div(class='span2', style='text-align: right') Lugar de expedicion:
                     div(class='span1')
-                        input(type='text', name='Vplaceex', pattern='[a-zA-z]+', required)
+                        input(type='text', name='Vplaceex', pattern='[a-zA-z0-9 s]+', required)
 
                 div(class='row-fluid', style='margin-left: -10%')
                     div(class='span2')
-                    div(class='span2', style='text-align: right') Kind of voucher:
+                    div(class='span2', style='text-align: right') Tipo de voucher:
                     div(class='span1')
-                        input(type='text', name='Vkindvouch', pattern='[a-zA-z]+', maxlength='20', required)
+                        input(type='text', name='Vkindvouch', pattern='[a-zA-z \s]+', maxlength='20', required)
 
 
 
@@ -263,7 +263,7 @@ block content
 
                 div(class='row-fluid', style='margin-left: -10%')
                     div(class='span2')
-                    div(class='span2', style='text-align: right') Taxes:
+                    div(class='span2', style='text-align: right') Impuesto:
                     div(class='span1')
                         select(name='taxesWithheld')
                             option(value='iva') IVA
@@ -271,9 +271,9 @@ block content
 
                 div(class='row-fluid', style='margin-left: -10%')
                     div(class='span2')
-                    div(class='span2', style='text-align: right') Import:
+                    div(class='span2', style='text-align: right') Importe:
                     div(class='span1')
-                        input(type='number', name='TWimport', pattern='[0-9]+', required)
+                        input(type='text', name='TWimport', pattern='[0-9.]+',maxlength='10', required)
 
 
 
@@ -291,15 +291,15 @@ block content
 
                 div(class='row-fluid', style='margin-left: -10%')
                     div(class='span2')
-                    div(class='span2', style='text-align: right') Import:
+                    div(class='span2', style='text-align: right') Importe:
                     div(class='span1')
-                        input(type='text', name='TTimport', pattern='[0-9]+',maxlength='13', required)
+                        input(type='text', name='TTimport', pattern='[0-9.]+',maxlength='10', required)
 
                 div(class='row-fluid', style='margin-left: -10%')
                     div(class='span2')
                     div(class='span2', style='text-align: right') Rate:
                     div(class='span1')
-                        input(type='text', name='TWrate', pattern='[0-9]{3}\.[0-9]{2}', required)
+                        input(type='text', name='TWrate', pattern='[0-9.]+',maxlength='6', required )
 
             div(class='container-fluid', style='text-align: center ; margin-top: -20px')
                 div(class='row-fluid')
@@ -309,13 +309,13 @@ block content
                     div(class='span2')
                     div(class='span2', style='text-align: right') Cantidad:
                     div(class='span1')
-                        input(type='text', name='Ccantidad', pattern='[0-9]+', required)
+                        input(type='text', name='Ccantidad', pattern='[0-9.]+', required)
 
                 div(class='row-fluid', style='margin-left: -10%')
                     div(class='span2')
                     div(class='span2', style='text-align: right') Unidad:
                     div(class='span1')
-                        input(type='text', name='Cunidad', pattern='[0-9]+')
+                        input(type='text', name='Cunidad', pattern='[A-Za-z]+')
 
                 div(class='row-fluid', style='margin-left: -10%')
                     div(class='span2')
@@ -332,7 +332,7 @@ block content
 
 
 
-                input(class ='btn btn-inverse', type='submit', value='Guardar', align='center')
+            input(class ='btn btn-inverse', type='submit', value='Guardar', align='center')
          
 
 

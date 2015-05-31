@@ -2,7 +2,7 @@
 extends ./layout.jade
 
 block title
-  title Article Title
+  title Home
 
 block content
     
@@ -11,7 +11,7 @@ block content
         div
         br 
         h1(align='center') Bienvenido
-        h3(align='center') Dale agregar para, agregar -.-
+        h3(align='center') Dale agregar para... agregar -.-
         br 
         br
    
@@ -33,6 +33,8 @@ block content
                         td #{reg.transmitter().string("rfc") }
                         td 
                             a(href='/pdf/#{reg.regis().number("regis_id")}') PDF
+                        td 
+                            a(href='/xml/#{reg.regis().number("regis_id")}') XML
                      
 
 
