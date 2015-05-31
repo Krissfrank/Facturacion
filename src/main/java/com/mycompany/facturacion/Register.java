@@ -1,9 +1,8 @@
-
 package com.mycompany.facturacion;
-
+ 
 import com.github.luischavez.database.Database;
 import com.github.luischavez.database.link.Row;
-
+ 
 /**
  *
  * @author Cris
@@ -11,13 +10,13 @@ import com.github.luischavez.database.link.Row;
 public class Register {
     
     private Row regis;
-
+ 
     public Register(Row regis) {
         this.regis = regis;
     }
     
     public Row receptor(){
-    Database database = Database.use("mysql");
+        Database database = Database.use("mysql");
         database.open();
         Row first = database.table("receptors").where("receptor_id", "=", this.regis.number("receptor_id")).first();
         database.close();
@@ -25,7 +24,7 @@ public class Register {
     }
     
     public Row transmitter(){
-    Database database = Database.use("mysql");
+        Database database = Database.use("mysql");
         database.open();
         Row first = database.table("transmitters").where("transmitter_id", "=", this.regis.number("transmitter_id")).first();
         database.close();
@@ -34,7 +33,7 @@ public class Register {
     }
     
     public Row voucher(){
-    Database database = Database.use("mysql");
+        Database database = Database.use("mysql");
         database.open();
         Row first = database.table("vouchers").where("voucher_id", "=", this.regis.number("voucher_id")).first();
         database.close();
@@ -45,6 +44,27 @@ public class Register {
         return this.regis;
     }
     
-    
+    public Row concepts() {
+        Database database = Database.use("mysql");
+        database.open();
+        Row first = database.table("concepts").where("voucher_id", "=", this.regis.number("voucher_id")).first();
+        database.close();
+        return first;
+    } 
+ 
+    public Row taxestrans() {
+        Database database = Database.use("mysql");
+        database.open();
+        Row first = database.table("taxestrans").where("voucher_id", "=", this.regis.number("voucher_id")).first();
+        database.close();
+        return first;
+    }
+ 
+    public Row taxeswithheld() {
+        Database database = Database.use("mysql");
+        database.open();
+        Row first = database.table("taxeswithheld").where("voucher_id", "=", this.regis.number("voucher_id")).first();
+        database.close();
+        return first;
+    }
 }
-
