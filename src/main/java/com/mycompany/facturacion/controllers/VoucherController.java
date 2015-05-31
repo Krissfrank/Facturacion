@@ -2,6 +2,7 @@ package com.mycompany.facturacion.controllers;
 
 import com.github.luischavez.database.Database;
 import com.github.luischavez.database.link.Affecting;
+import com.github.luischavez.database.link.Row;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -83,8 +84,13 @@ public class VoucherController {
         
         Database database = Database.use("mysql");
         database.open();
+        if(Tinterior==null)
+            Tinterior="";
+        if(Cunidad==null)
+           Cunidad="0";
         
-        Affecting transInsert = database.insert("Transmitters","name, rfc, taxation, ,hood, street, noIn, noEx, location, reference, country, state, city, postalCode" , 
+        
+        Affecting transInsert = database.insert("Transmitters","name, rfc, taxation, hood, street, noIn, noEx, location, reference, country, state, city, postalCode" , 
                 Tnombre, Trfc, Ttaxation,Tcolonia, Tcalle, Tinterior, Texterior, Tlocalidad, Treferencia, Tpais, Testado, Tciudad, Tcp  );
         Object transID = transInsert.getGeneratedKeys()[0];
         
@@ -92,17 +98,19 @@ public class VoucherController {
                 ,Rnombre, Rrfc, Rtaxation, Rcolonia,Rcalle, Rinterior,Rexterior, Rlocalidad, Rreferencia, Rpais, Restado, Rciudad,Rcp,Rmail );
         Object recepID = receptInsert.getGeneratedKeys()[0];
         
-        Affecting voucherInsert = database.insert("vouchers", "created_at serie, folio, currency,kindofchange,methodpay,kindofpay,conditionpay,placeofexpedition,kindofvoucher"
+        Affecting voucherInsert = database.insert("vouchers", "created_at, serie, folio, currency,kindofchange,methodpay,kindofpay,conditionpay,placeofexpedition,kindofvoucher"
                 ,LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME), Vserie,Vfolio,Vdivisa,Vtipodiv,Vmetpago,Vtipopago,Vcondition,Vplaceex,Vkindvouch);
         Object voucherID = voucherInsert.getGeneratedKeys()[0];
         
         database.insert("taxeswithheld", "voucher_id, taxes, import",voucherID,taxesWithheld,TWimport);
         
-        database.insert("taxestrans", "voucher_id, taxes, rate , import", voucherID, taxesTrans, TWrate, TTimport);
+        database.insert("taxestrans", "voucher_id, taxes,rate ,  import", voucherID, taxesTrans,TWrate, TTimport);
         
         database.insert("concepts", "voucher_id, quantity,unit,noId,description ", voucherID, Ccantidad,Cunidad,Cnoid,Cdesc);
+        Row user =(Row) rq.session().attribute("user");
+        database.insert("regis", "receptor_id,voucher_id,transmitter_id,user_id",recepID,voucherID,transID, user.number("user_id") );
         database.close();
-        
+        rs.redirect("/index");
         return null;
     }
     

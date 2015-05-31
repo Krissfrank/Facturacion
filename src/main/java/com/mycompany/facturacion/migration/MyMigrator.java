@@ -16,7 +16,7 @@ public class MyMigrator extends Migrator {
         this.register(new CreateConceptsTable());
         this.register(new CreateTaxesTransTable());
         this.register(new CreateTaxesWithheldTable());
-        this.register(new CreateRegisTable());
         this.register(new CreateIndexTable());
+        this.register(new CreateRegisTable());
     }
 }

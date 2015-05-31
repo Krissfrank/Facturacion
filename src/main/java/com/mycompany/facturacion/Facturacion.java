@@ -17,6 +17,13 @@ public class Facturacion {
 
     public static void main(String[] args) {
         Database.load(new XMLBuilder(), new ProjectSource("/database.xml"));
+        Database database = Database.use("mysql");
+        database.open();
+        database.migrate();
+        boolean empty = database.table("users").get().empty();
+        if (empty == true) {
+            database.insert("users", "user, pass", "manuel", "a123");
+        }
         port(80);
 
         // The hello.jade template file is in the resources/templates directory
@@ -25,13 +32,7 @@ public class Facturacion {
         post("/login", UserController::doLogin);
         get("/logout", UserController::logout);
         get("/form", VoucherController::form, new JadeTemplateEngine());
-        post("/saveForm",VoucherController::saveForm);
-        Database database = Database.use("mysql");
-        database.open();
-        boolean empty = database.table("users").get().empty();
-        if (empty == true) {
-            database.insert("users", "user, pass", "manuel", "a123");
-        }
-        
+        post("/saveForm", VoucherController::saveForm);
+
     }
 }
