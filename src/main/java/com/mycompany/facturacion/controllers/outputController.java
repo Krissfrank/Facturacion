@@ -3,8 +3,11 @@ package com.mycompany.facturacion.controllers;
 import com.github.luischavez.database.Database;
 import com.github.luischavez.database.link.Row;
 import com.mycompany.facturacion.Register;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.HashMap;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.pdfbox.exceptions.COSVisitorException;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -12,6 +15,8 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.edit.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.graphics.xobject.PDJpeg;
+import org.apache.pdfbox.pdmodel.graphics.xobject.PDXObjectImage;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -47,12 +52,22 @@ public class outputController {
         PDDocument document = new PDDocument();
         PDPage page = new PDPage();
         document.addPage(page);
-
+        
+        
+         BigDecimal price = register.concepts().decimal("price");
+        long quantity = register.concepts().number("quantity");
+        BigDecimal rate = register.taxestrans().decimal("rate");
+        
+        BigDecimal importe = price.multiply(BigDecimal.valueOf(quantity));
+        BigDecimal rateImporte = rate.divide(BigDecimal.valueOf(100.0)).multiply(importe);
+        
+        BigDecimal total = importe.add(rateImporte);
+        
 // Create a new font object selecting one of the PDF base fonts
         PDFont font = PDType1Font.HELVETICA_BOLD;
 
 // Start a new content stream which will "hold" the to be created content
-        PDPageContentStream contentStream = new PDPageContentStream(document, page);
+        PDPageContentStream contentStream = new PDPageContentStream(document, page, true, true);
 
 // Define a text content stream using the selected font, moving the cursor and drawing the text "Hello World"
         //Titulo 
@@ -211,7 +226,7 @@ public class outputController {
         contentStream.beginText();
         contentStream.setFont(font, 11);
         contentStream.moveTextPositionByAmount(450, 390);
-        contentStream.drawString("$" + register.taxestrans().decimal("import"));
+        contentStream.drawString("$" + importe.toPlainString());
         contentStream.endText();
 
         /**
@@ -274,28 +289,31 @@ public class outputController {
         contentStream.drawString(register.transmitter().string("city")+", "+register.transmitter().string("state"));
         contentStream.endText();
         
+       
         contentStream.beginText();
         contentStream.setFont(font, 12);
         contentStream.moveTextPositionByAmount(450, 260);
-        contentStream.drawString("Total: ");
+        contentStream.drawString("Total: " + total.toPlainString());
         contentStream.endText();
         
-        contentStream.beginText();
+       /* contentStream.beginText();
         contentStream.setFont(font, 12);
         contentStream.moveTextPositionByAmount(450, 240);
         contentStream.drawString("$"+register.taxestrans().decimal("import"));
         contentStream.endText();
+        */
         
+        BufferedImage img = ImageIO.read(outputController.class.getResource("/img/blason.jpg"));
+        PDJpeg jpeg = new PDJpeg(document, img);
+        contentStream.drawImage(jpeg, 0, 0);
         
-
-        // Make sure that the content stream is closed:
         contentStream.close();
         HttpServletResponse raw = rs.raw();
-// Save the results and ensure that the document is properly closed:
         document.save(raw.getOutputStream());
         raw.getOutputStream().flush();
         raw.getOutputStream().close();
-        document.close();
+        document.close();      
+        
         return rs.raw();
     }
 

@@ -28,8 +28,6 @@ public class CreateReceptorTable implements Migration{
             table.text("country");
             table.string("email",100);
             table.primary("receptor_id");
-
-            
         });
     }
 

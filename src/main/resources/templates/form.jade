@@ -252,34 +252,9 @@ block content
                     div(class='span1')
                         input(type='text', name='Vkindvouch', pattern='[a-zA-z \s]+', maxlength='20', required)
 
-
-
-
-
-
             div(class='container-fluid', style='text-align: center ; margin-top: -20px')
                 div(class='row-fluid')
-                    h2 Impuestos retenidos
-
-                div(class='row-fluid', style='margin-left: -10%')
-                    div(class='span2')
-                    div(class='span2', style='text-align: right') Impuesto:
-                    div(class='span1')
-                        select(name='taxesWithheld')
-                            option(value='iva') IVA
-                            option(value='isr') ISR
-
-                div(class='row-fluid', style='margin-left: -10%')
-                    div(class='span2')
-                    div(class='span2', style='text-align: right') Importe:
-                    div(class='span1')
-                        input(type='text', name='TWimport', pattern='[0-9.]+',maxlength='10', required)
-
-
-
-            div(class='container-fluid', style='text-align: center ; margin-top: -20px')
-                div(class='row-fluid')
-                    h2 Impuestos de traslado
+                    h2 Impuestos
 
                 div(class='row-fluid', style='margin-left: -10%')
                     div(class='span2')
@@ -288,12 +263,6 @@ block content
                         select(name='taxesTrans')
                             option(value='iva') IVA
                             option(value='isr') IEPS
-
-                div(class='row-fluid', style='margin-left: -10%')
-                    div(class='span2')
-                    div(class='span2', style='text-align: right') Importe:
-                    div(class='span1')
-                        input(type='text', name='TTimport', pattern='[0-9.]+',maxlength='10', required)
 
                 div(class='row-fluid', style='margin-left: -10%')
                     div(class='span2')
@@ -316,6 +285,12 @@ block content
                     div(class='span2', style='text-align: right') Unidad:
                     div(class='span1')
                         input(type='text', name='Cunidad', pattern='[A-Za-z]+')
+
+                div(class='row-fluid', style='margin-left: -10%')
+                    div(class='span2')
+                    div(class='span2', style='text-align: right') Precio:
+                    div(class='span1')
+                        input(type='text', name='Cprice', pattern='[0-9.]+',maxlength='10', required)
 
                 div(class='row-fluid', style='margin-left: -10%')
                     div(class='span2')

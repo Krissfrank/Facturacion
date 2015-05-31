@@ -29,6 +29,10 @@ public class Facturacion {
         port(80);
 
         // The hello.jade template file is in the resources/templates directory
+        get("/", (rq, rs) -> {
+            rs.redirect("/index");
+            return null;
+        });
         get("/index", IndexController::index, new JadeTemplateEngine());
         get("/login", UserController::login, new JadeTemplateEngine());
         post("/login", UserController::doLogin);
@@ -37,6 +41,6 @@ public class Facturacion {
         post("/saveForm", VoucherController::saveForm);
         get("/pdf/:id", outputController::pdf);
         get("/xml/:id", outputController::xml, new JadeTemplateEngine());
-
+        get("/delete/:id", VoucherController::delete);
     }
 }

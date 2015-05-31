@@ -59,12 +59,4 @@ public class Register {
         database.close();
         return first;
     }
- 
-    public Row taxeswithheld() {
-        Database database = Database.use("mysql");
-        database.open();
-        Row first = database.table("taxeswithheld").where("voucher_id", "=", this.regis.number("voucher_id")).first();
-        database.close();
-        return first;
-    }
 }

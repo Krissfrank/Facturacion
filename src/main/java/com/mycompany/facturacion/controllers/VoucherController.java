@@ -69,24 +69,20 @@ public class VoucherController {
         String Vplaceex= rq.queryParams("Vplaceex");
         String Vkindvouch= rq.queryParams("Vkindvouch");
         
-        String taxesWithheld= rq.queryParams("taxesWithheld");
-        String TWimport=rq.queryParams("TWimport");
-        
         String taxesTrans=rq.queryParams("taxesTrans");
-        String TTimport=rq.queryParams("TTimport");
         String TWrate=rq.queryParams("TWrate");
-        
         
         String Ccantidad=rq.queryParams("Ccantidad");
         String Cunidad=rq.queryParams("Cunidad");
         String Cnoid=rq.queryParams("Cnoid");
+        String Cprice=rq.queryParams("Cprice");
         String Cdesc=rq.queryParams("Cdesc");
         
         Database database = Database.use("mysql");
         database.open();
         if(Tinterior==null)
             Tinterior="";
-        if(Tinterior==null)
+        if(Rinterior==null)
             Rinterior="";
         if(Cunidad==null)
            Cunidad="0";
@@ -104,11 +100,9 @@ public class VoucherController {
                 ,LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME), Vserie,Vfolio,Vdivisa,Vtipodiv,Vmetpago,Vtipopago,Vcondition,Vplaceex,Vkindvouch);
         Object voucherID = voucherInsert.getGeneratedKeys()[0];
         
-        database.insert("taxeswithheld", "voucher_id, taxes, import",voucherID,taxesWithheld,TWimport);
+        database.insert("taxestrans", "voucher_id, taxes, rate", voucherID, taxesTrans, TWrate);
         
-        database.insert("taxestrans", "voucher_id, taxes,rate ,  import", voucherID, taxesTrans,TWrate, TTimport);
-        
-        database.insert("concepts", "voucher_id, quantity,unit,noId,description ", voucherID, Ccantidad,Cunidad,Cnoid,Cdesc);
+        database.insert("concepts", "voucher_id, quantity, unit, price, noId, description ", voucherID, Ccantidad, Cunidad, Cprice, Cnoid,Cdesc);
         Row user =(Row) rq.session().attribute("user");
         database.insert("regis", "receptor_id,voucher_id,transmitter_id,user_id",recepID,voucherID,transID, user.number("user_id") );
         database.close();
@@ -116,4 +110,27 @@ public class VoucherController {
         return null;
     }
     
+    public static Object delete(Request rq, Response rs) {
+        if(rq.session().attribute("user") == null){
+            rs.redirect("/login");
+            return null;
+        }
+        Object id = rq.params(":id");
+        Database database = Database.use("mysql");
+        database.open();
+        Row regis = database.table("regis").where("regis_id", "=", id).first();
+        if (null != regis) {
+            long userId = regis.number("user_id");
+            Row user = (Row) rq.session().attribute("user");
+            if (userId == user.number("user_id")) {
+                database.where("regis_id", "=", id).delete("regis");
+                database.where("receptor_id", "=", regis.number("receptor_id")).delete("receptors");
+                database.where("transmitter_id", "=", regis.number("transmitter_id")).delete("transmitters");
+                database.where("voucher_id", "=", regis.number("voucher_id")).delete("vouchers");
+            }
+        }
+        database.close();
+        rs.redirect("/index");
+        return null;
+    }
 }

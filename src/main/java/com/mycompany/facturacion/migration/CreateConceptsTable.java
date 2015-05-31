@@ -16,6 +16,7 @@ public class CreateConceptsTable implements Migration {
             table.integer("voucher_id");
             table.integer("quantity");
             table.string("unit",100);
+            table.decimal("price", 10, 2);
             table.integer("noId");
             table.text("description");
             table.foreign("voucher_id", "vouchers", "voucher_id", "cascade","cascade");
