@@ -99,7 +99,7 @@ public class outputController {
         contentStream.beginText();
         contentStream.setFont(font, 10);
         contentStream.moveTextPositionByAmount(65, 610);
-        contentStream.drawString(register.transmitter().string("state") + ", " + register.transmitter().string("city") + ", CP: " + register.transmitter().string("postalcode"));
+        contentStream.drawString(register.transmitter().string("state") + ", " + register.transmitter().string("city") + " CP: " + register.transmitter().string("postalcode"));
         contentStream.endText();
 
         contentStream.beginText();

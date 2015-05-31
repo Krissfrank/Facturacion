@@ -1,3 +1,93 @@
 !!! xml
 Response
-    Say This is a twilio XML example in Jade
+    div(style='text-align: center')
+        h1 Factura
+
+    div(align='center')
+        table(style='width: 75%')
+            tr
+                td Emisor: Consulta_nombreEmisor
+                td(style='text-align: right') Fecha: consulta_sysdate
+            tr
+                td RFC: Consulta_rfcEmisor
+
+        table(style='width: 75%')
+            tr
+                td Direccion: 
+            tr
+                td Colonia: Consulta_coloniaEmisor
+            tr
+                td connsulta_estadoEmisor consulta_ciudadEmisor CP: consulta_CP_emisor
+            tr
+                td consultaPaisEmisor
+
+        table(style='width: 75%')
+            tr
+                td Receptor: Consulta_nombreReceptor
+                td(style='text-align: right') Fecha: consulta_folioVoucher
+            tr
+                td RFC: Consulta_rfcEmisor
+                td(style='text-align: right') Fecha: consulta_serieVoucher
+               
+        table(style='width: 75%')
+            tr
+                td Direccion: 
+            tr
+                td Colonia: Consulta_coloniaReceptor
+            tr
+                td connsulta_estadoReceptor consulta_ciudadReceptor CP: consulta_CP_Receptor
+            tr
+                td consultaPaisReceptor
+        
+        table(style='width: 75%')
+            tr 
+                td Cantidad
+                td Unidad
+                td Descripcion
+                td Importe
+
+        table(style='width: 75%')
+            tr 
+                td consulta_Cantidad_voucher
+                td consulta_Unidad_voucher
+                td consulta_Descripcion_voucher
+                td consulta_Importe_voucher
+
+        table(style='width: 75%')
+            tr
+                td Forma de pago: Consulta_kindOfPay_voucher
+                td(style='text-align: right') Divisa: consulta_Divisa_Voucher
+            tr
+                td Metodo de pago: consulta_methodpay_voucher
+                td(style='text-align: right') Tipo de impuesto: 
+            
+            tr
+                td Condiciones de pago: consulta_conditionpay_voucher
+                td(style='text-align: right') consulta_impuesto_transmitter
+
+            tr
+                td Referencia: consulta_reference_receptor
+ 
+            tr
+                td Logar de expedicion: 
+                td(style='text-align: right') Total
+            
+            tr
+                td consulta_ciudadEmisor consulta_estadoEmistor 
+                td(style='text-align: right') consulta_importe+IVA
+            
+
+
+
+
+
+
+
+
+
+
+
+   
+                
+             
+                    
