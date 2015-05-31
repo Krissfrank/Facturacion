@@ -41,6 +41,10 @@ public class Register {
         return first;
     }
     
+    public Row regis(){
+        return this.regis;
+    }
+    
     
 }
 

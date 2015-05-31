@@ -86,6 +86,8 @@ public class VoucherController {
         database.open();
         if(Tinterior==null)
             Tinterior="";
+        if(Tinterior==null)
+            Rinterior="";
         if(Cunidad==null)
            Cunidad="0";
         
