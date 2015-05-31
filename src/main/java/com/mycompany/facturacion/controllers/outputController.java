@@ -35,8 +35,17 @@ public class outputController {
         Register register = new Register(regis);
         database.close();
 
+        BigDecimal price = register.concepts().decimal("price");
+        long quantity = register.concepts().number("quantity");
+        BigDecimal rate = register.taxestrans().decimal("rate");
+        BigDecimal importe = price.multiply(BigDecimal.valueOf(quantity));
+        BigDecimal rateImporte = rate.divide(BigDecimal.valueOf(100.0)).multiply(importe);
+        BigDecimal total = importe.add(rateImporte);
+
         HashMap<Object, Object> values = new HashMap<>();
         values.put("regis", register);
+        values.put("importe",importe);
+        values.put("total",total);
         rs.header("Content-Type", "application/xml");
         rs.type("text/xml");
         return new ModelAndView(values, "xml");
@@ -52,17 +61,16 @@ public class outputController {
         PDDocument document = new PDDocument();
         PDPage page = new PDPage();
         document.addPage(page);
-        
-        
-         BigDecimal price = register.concepts().decimal("price");
+
+        BigDecimal price = register.concepts().decimal("price");
         long quantity = register.concepts().number("quantity");
         BigDecimal rate = register.taxestrans().decimal("rate");
-        
+
         BigDecimal importe = price.multiply(BigDecimal.valueOf(quantity));
         BigDecimal rateImporte = rate.divide(BigDecimal.valueOf(100.0)).multiply(importe);
-        
+
         BigDecimal total = importe.add(rateImporte);
-        
+
 // Create a new font object selecting one of the PDF base fonts
         PDFont font = PDType1Font.HELVETICA_BOLD;
 
@@ -262,58 +270,56 @@ public class outputController {
         contentStream.beginText();
         contentStream.setFont(font, 12);
         contentStream.moveTextPositionByAmount(450, 340);
-        contentStream.drawString("Divisa: "+register.voucher().string("currency"));
+        contentStream.drawString("Divisa: " + register.voucher().string("currency"));
         contentStream.endText();
-        
+
         contentStream.beginText();
         contentStream.setFont(font, 12);
         contentStream.moveTextPositionByAmount(450, 320);
         contentStream.drawString("Tipo de impuesto: ");
         contentStream.endText();
-        
+
         contentStream.beginText();
         contentStream.setFont(font, 12);
         contentStream.moveTextPositionByAmount(450, 300);
-        contentStream.drawString(""+register.taxestrans().string("taxes"));
+        contentStream.drawString("" + register.taxestrans().string("taxes")+" "+register.taxestrans().decimal("rate")+"%");
         contentStream.endText();
-        
+
         contentStream.beginText();
         contentStream.setFont(font, 12);
         contentStream.moveTextPositionByAmount(65, 260);
         contentStream.drawString("Lugar de expedicion: ");
         contentStream.endText();
-        
+
         contentStream.beginText();
         contentStream.setFont(font, 12);
         contentStream.moveTextPositionByAmount(65, 240);
-        contentStream.drawString(register.transmitter().string("city")+", "+register.transmitter().string("state"));
+        contentStream.drawString(register.transmitter().string("city") + ", " + register.transmitter().string("state"));
         contentStream.endText();
-        
-       
+
         contentStream.beginText();
         contentStream.setFont(font, 12);
         contentStream.moveTextPositionByAmount(450, 260);
         contentStream.drawString("Total: " + total.toPlainString());
         contentStream.endText();
-        
-       /* contentStream.beginText();
-        contentStream.setFont(font, 12);
-        contentStream.moveTextPositionByAmount(450, 240);
-        contentStream.drawString("$"+register.taxestrans().decimal("import"));
-        contentStream.endText();
-        */
-        
+
+        /* contentStream.beginText();
+         contentStream.setFont(font, 12);
+         contentStream.moveTextPositionByAmount(450, 240);
+         contentStream.drawString("$"+register.taxestrans().decimal("import"));
+         contentStream.endText();
+         */
         BufferedImage img = ImageIO.read(outputController.class.getResource("/img/blason.jpg"));
         PDJpeg jpeg = new PDJpeg(document, img);
         contentStream.drawImage(jpeg, 0, 0);
-        
+
         contentStream.close();
         HttpServletResponse raw = rs.raw();
         document.save(raw.getOutputStream());
         raw.getOutputStream().flush();
         raw.getOutputStream().close();
-        document.close();      
-        
+        document.close();
+
         return rs.raw();
     }
 

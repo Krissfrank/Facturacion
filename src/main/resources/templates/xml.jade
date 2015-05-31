@@ -1,4 +1,42 @@
 !!! xml
-voucher
-    name #{regis.receptor().string("name")}
-    rfc #{regis.receptor().string("rfc")}
+Factura
+    emisor
+        Nombre #{regis.transmitter().string("name")}
+        RFC #{regis.transmitter().string("rfc")}
+        Fecha #{regis.voucher().dateTime("created_at")}
+        Colnia #{regis.transmitter().string("hood")}
+        Calle #{regis.transmitter().string("street")}
+        Numero_exterior #{regis.transmitter().string("noex")}
+        Estado #{regis.transmitter().string("state")}
+        Ciudad #{regis.transmitter().string("city")}
+        Pais #{regis.transmitter().string("country")}
+
+    Transmisor
+        Nombre #{regis.receptor().string("name")}
+        RFC #{regis.receptor().string("rfc")}
+        Colnia #{regis.receptor().string("hood")}
+        Calle #{regis.receptor().string("street")}
+        Numero_exterior #{regis.receptor().string("noex")}
+        Estado #{regis.receptor().string("state")}
+        Ciudad #{regis.receptor().string("city")}
+        Pais #{regis.receptor().string("country")}
+        Referencia #{regis.receptor().string("reference")}
+
+    Voucher    
+        Concepto
+            Cantidad #{regis.concepts().number("quantity")}
+            Unidad #{regis.concepts().string("unit")}
+            Descripcion #{regis.concepts().string("description")}
+            Importe #{importe}
+        
+        Forma de pago #{regis.voucher().string("kindofpay")}
+        Metodo de pago #{regis.voucher().string("methodpay")}
+        Condicion de pago #{regis.voucher().string("conditionpay")}
+        Divisa #{regis.voucher().string("currency")}
+    
+        Impuestos
+            Tipo impuesto #{regis.taxestrans().string("taxes")}
+            Tasa #{regis.taxestrans().decimal("rate")}
+    
+    Total #{total}
+    
