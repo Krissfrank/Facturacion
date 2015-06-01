@@ -29,7 +29,9 @@ public class VoucherController {
             rs.redirect("/login");
             return null;
         }
-            
+        /**
+         * Obtiene las cadenas de los input
+         */    
         String Tnombre = rq.queryParams("Tnombre");
         String Trfc= rq.queryParams("Trfc"); 
         String Ttaxation= rq.queryParams("Ttaxation"); 
@@ -77,9 +79,14 @@ public class VoucherController {
         String Cnoid=rq.queryParams("Cnoid");
         String Cprice=rq.queryParams("Cprice");
         String Cdesc=rq.queryParams("Cdesc");
-        
+        /**
+         * abre la abse de datos
+         */
         Database database = Database.use("mysql");
         database.open();
+        /**
+         * Permite dejar en blanco los input de numero interior y unidad
+         */
         if(Tinterior==null)
             Tinterior="";
         if(Rinterior==null)
@@ -87,7 +94,9 @@ public class VoucherController {
         if(Cunidad==null)
            Cunidad="0";
         
-        
+        /**
+         * Inserta los datos en las tablas
+         */
         Affecting transInsert = database.insert("Transmitters","name, rfc, taxation, hood, street, noIn, noEx, location, reference, country, state, city, postalCode" , 
                 Tnombre, Trfc, Ttaxation,Tcolonia, Tcalle, Tinterior, Texterior, Tlocalidad, Treferencia, Tpais, Testado, Tciudad, Tcp  );
         Object transID = transInsert.getGeneratedKeys()[0];

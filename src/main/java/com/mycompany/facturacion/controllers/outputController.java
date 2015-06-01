@@ -27,6 +27,12 @@ import spark.Response;
  */
 public class outputController {
 
+    /**
+     *
+     * @param rq solicita URL con el id del registo seleccionado
+     * @param rs
+     * @return
+     */
     public static ModelAndView xml(Request rq, Response rs) {
         String id = rq.params(":id");
         Database database = Database.use("mysql");
@@ -44,13 +50,22 @@ public class outputController {
 
         HashMap<Object, Object> values = new HashMap<>();
         values.put("regis", register);
-        values.put("importe",importe);
-        values.put("total",total);
+        values.put("importe", importe);
+        values.put("total", total);
         rs.header("Content-Type", "application/xml");
         rs.type("text/xml");
         return new ModelAndView(values, "xml");
     }
 
+    /**
+     * Genera PDF con el id de registro
+     *
+     * @param rq solicita URL con el id del registro seleccionado
+     * @param rs
+     * @return
+     * @throws IOException
+     * @throws COSVisitorException
+     */
     public static Object pdf(Request rq, Response rs) throws IOException, COSVisitorException {
         String id = rq.params(":id");
         Database database = Database.use("mysql");
@@ -62,6 +77,9 @@ public class outputController {
         PDPage page = new PDPage();
         document.addPage(page);
 
+        /**
+         * Calculo de total, con el impuesto
+         */
         BigDecimal price = register.concepts().decimal("price");
         long quantity = register.concepts().number("quantity");
         BigDecimal rate = register.taxestrans().decimal("rate");
@@ -282,7 +300,7 @@ public class outputController {
         contentStream.beginText();
         contentStream.setFont(font, 12);
         contentStream.moveTextPositionByAmount(450, 300);
-        contentStream.drawString("" + register.taxestrans().string("taxes")+" "+register.taxestrans().decimal("rate")+"%");
+        contentStream.drawString("" + register.taxestrans().string("taxes") + " " + register.taxestrans().decimal("rate") + "%");
         contentStream.endText();
 
         contentStream.beginText();

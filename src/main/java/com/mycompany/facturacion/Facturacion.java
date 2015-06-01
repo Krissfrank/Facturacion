@@ -16,16 +16,24 @@ import spark.template.jade.JadeTemplateEngine;
  */
 public class Facturacion {
 
+    /**
+     * Crea base de datos Inserta usuario y contraseña para users Crea
+     * direcciones para los templates
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         Database.load(new XMLBuilder(), new ProjectSource("/database.xml"));
         Database database = Database.use("mysql");
         database.open();
         database.migrate();
+        //si la tabla "users" esta vacia crea usuario y pass, si no esta vacia no hace nada.
         boolean empty = database.table("users").get().empty();
         if (empty == true) {
             database.insert("users", "user, pass", "manuel", "a123");
         }
-       
+        
+        //localhost
         port(80);
 
         // The hello.jade template file is in the resources/templates directory

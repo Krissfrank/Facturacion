@@ -18,6 +18,12 @@ import spark.Response;
  */
 public class IndexController {
 
+    /**
+     *
+     * @param rq 
+     * @param rs
+     * @return
+     */
     public static ModelAndView index(Request rq, Response rs) {
 
         Map<String, Object> map = new HashMap<>();
@@ -31,10 +37,10 @@ public class IndexController {
                     .get();
             ArrayList<Register> registers = new ArrayList<>();
             for (Row regi : regis) {
-               registers.add(new Register(regi));
+                registers.add(new Register(regi));
             }
-        map.put("user", user);
-        map.put("regis",registers);
+            map.put("user", user);
+            map.put("regis", registers);
         }
         database.close();
         return new ModelAndView(map, "index");
