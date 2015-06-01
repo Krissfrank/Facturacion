@@ -7,7 +7,9 @@ import com.github.luischavez.database.Migrator;
  * @author Cris
  */
 public class MyMigrator extends Migrator {
-
+/**
+ * Crea tablas
+ */
     @Override
     public void setup() {
         this.register(new CreateReceptorTable());
